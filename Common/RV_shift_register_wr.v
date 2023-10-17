@@ -2,7 +2,7 @@
 
 
 
-module VX_shift_register_wr#(
+module RV_shift_register_wr#(
 
     parameter DATAW = 8,
     parameter DEPTH = 2,
