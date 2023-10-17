@@ -1,9 +1,9 @@
 `timescale 1ns / 1ps
 
-`include "VX_define.vh"
+`include "RV_define.vh"
 
 
-module VX_fp_ncomp#(
+module RV_fp_ncomp#(
     
     parameter TAGW  = 1,
     parameter LANES = 1
@@ -171,8 +171,8 @@ module VX_fp_ncomp#(
             assign b_exponent[i] = datab_2D[i][30:23];                         // Extract exponent bits from 2D array datab_2D
             assign b_mantissa[i] = datab_2D[i][22:0];                          // Extract mantissa bits from 2D array datab_2D
 
-        // Instantiate VX_fp_class module for input a
-        VX_fp_class #( 
+        // Instantiate RV_fp_class module for input a
+        RV_fp_class #( 
             .EXP_BITS (EXP_BITS),
             .MAN_BITS (MAN_BITS)
         ) fp_class_a (
@@ -181,8 +181,8 @@ module VX_fp_ncomp#(
             .clss_o(a_clss [i])    
 
         );
-        // Instantiate VX_fp_class module for input b
-        VX_fp_class #( 
+        // Instantiate RV_fp_class module for input b
+        RV_fp_class #( 
             .EXP_BITS (EXP_BITS),
             .MAN_BITS (MAN_BITS)
         ) fp_class_b (
@@ -209,7 +209,7 @@ module VX_fp_ncomp#(
     wire stall;                                     //is used to control the pipeline stages within the module
     
     
-    VX_pipe_register #(
+    RV_pipe_register #(
         .DATAW  (1 + TAGW + `INST_FPU_BITS + `INST_FRM_BITS + LANES * (2 * 32 + 1 + 1 + 8 + 23 + 2 * 7 + 1 + 1)),
         .RESETW (1),
         .DEPTH  (0)
@@ -452,7 +452,7 @@ module VX_fp_ncomp#(
                       
     wire [(LANES*5)-1:0] fflags;
                       
-   VX_pipe_register #(
+   RV_pipe_register #(
       .DATAW  (1 + TAGW + (LANES * 32) + 1 + (LANES * 5))
     ) pipe_reg1 (
          .clk      (clk),
