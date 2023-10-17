@@ -1,8 +1,8 @@
 `timescale 1ns / 1ps
 
-`include "VX_define.vh"
+`include "RV_define.vh"
 
-module VX_fp_fma#(
+module RV_fp_fma#(
 
     parameter TAGW  = 1,
     parameter LANES = 1
@@ -139,7 +139,7 @@ module VX_fp_fma#(
     
     `UNUSED_VAR (frm)
     
-   VX_shift_register #(
+   RV_shift_register #(
         .DATAW  (1 + TAGW),
         .DEPTH  (3),
         .RESETW(1 + TAGW)
