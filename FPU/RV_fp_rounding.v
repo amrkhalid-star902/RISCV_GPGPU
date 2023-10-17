@@ -3,10 +3,10 @@
 /// Modified port of rouding module from fpnew Libray
 /// reference: https://github.com/pulp-platform/fpnew
 
-`include "VX_define.vh"
+`include "RV_define.vh"
 
 
-module VX_fp_rounding#(    
+module RV_fp_rounding#(    
 
     parameter DATA_WIDTH = 32
     
