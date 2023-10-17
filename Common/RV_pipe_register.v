@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module VX_pipe_register#(
+module RV_pipe_register#(
 
     parameter DATAW  = 8,
     parameter RESETW = DATAW,
@@ -122,7 +122,7 @@ module VX_pipe_register#(
         else begin
         
             // Multiple pipeline stages using a shift register
-            VX_shift_register #(
+            RV_shift_register #(
                 .DATAW  (DATAW),
                 .RESETW (RESETW),
                 .DEPTH  (DEPTH)
