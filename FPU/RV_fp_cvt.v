@@ -1,11 +1,11 @@
 `timescale 1ns / 1ps
 
-`include "VX_define.vh"
+`include "RV_define.vh"
 
 /// Modified port of cast module from fpnew Libray 
 /// reference: https://github.com/pulp-platform/fpnew
 
-module VX_fp_cvt#(
+module RV_fp_cvt#(
 
     parameter TAGW  = 1,
     parameter LANES = 1
@@ -93,7 +93,7 @@ module VX_fp_cvt#(
     
     generate
         for (i = 0; i < LANES; i = i + 1) begin
-            VX_fp_class #( 
+            RV_fp_class #( 
                 .EXP_BITS (EXP_BITS),
                 .MAN_BITS (MAN_BITS)
             ) fp_class (
@@ -143,7 +143,7 @@ module VX_fp_cvt#(
     wire [(LANES * INT_MAN_WIDTH)-1:0] encoded_mant_s0;
     wire stall;
     
-    VX_pipe_register #(
+    RV_pipe_register #(
         .DATAW  (1 + TAGW + 1 + `INST_FRM_BITS + 1 + LANES * (7 + 1 + INT_EXP_WIDTH + INT_MAN_WIDTH)),
         .RESETW (1)
     ) pipe_reg0 (
@@ -162,7 +162,7 @@ module VX_fp_cvt#(
     generate
         for (i = 0; i < LANES; i = i + 1) begin
             wire mant_is_nonzero;
-            VX_lzc #(
+            RV_lzc #(
                 .N    (INT_MAN_WIDTH),
                 .MODE (1)
             ) lzc (
@@ -205,7 +205,7 @@ module VX_fp_cvt#(
     wire [(LANES * INT_MAN_WIDTH)-1:0] input_mant_s1;
     wire [(LANES * INT_EXP_WIDTH)-1:0] input_exp_s1;
     
-    VX_pipe_register #(
+    RV_pipe_register #(
         .DATAW  (1 + TAGW + 1 + `INST_FRM_BITS + 1 + LANES * (7 + 1 + 1 + INT_MAN_WIDTH + INT_EXP_WIDTH)),
         .RESETW (1)
     ) pipe_reg1 (
@@ -303,7 +303,7 @@ module VX_fp_cvt#(
         end
     endgenerate
     
-    VX_pipe_register #(
+    RV_pipe_register #(
         .DATAW  (1 + TAGW + 1 + 1 + `INST_FRM_BITS + LANES * (7 + 1 + 1 + (2*INT_MAN_WIDTH+1) + INT_EXP_WIDTH + 1)),
         .RESETW (1)
     ) pipe_reg2 (
@@ -346,7 +346,7 @@ module VX_fp_cvt#(
             assign pre_round_abs = is_itof_s2 ? fmt_pre_round_abs : final_int;
     
             // Perform the rounding
-            VX_fp_rounding #(
+            RV_fp_rounding #(
                 .DATA_WIDTH (32)
             ) fp_rounding (
                 .abs_value_i    (pre_round_abs),
@@ -401,7 +401,7 @@ module VX_fp_cvt#(
         end
     endgenerate
     
-    VX_pipe_register #(
+    RV_pipe_register #(
         .DATAW  (1 + TAGW + 1 + 1 + LANES * (7 + 1 + 1 + 32 + 1 + 1)),
         .RESETW (1)
     ) pipe_reg3 (
@@ -543,7 +543,7 @@ module VX_fp_cvt#(
 
     wire [(LANES * 5)-1:0] fflags;
 
-    VX_pipe_register #(
+    RV_pipe_register #(
         .DATAW  (1 + TAGW + (LANES * 32) + (LANES * 5)),
         .RESETW (1)
     ) pipe_reg4 (
