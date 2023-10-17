@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
  //A non-resettable shift register module
-module VX_shift_register_nr#(
+module RV_shift_register_nr#(
 
     parameter DATAW = 8,
     parameter DEPTH = 2,
