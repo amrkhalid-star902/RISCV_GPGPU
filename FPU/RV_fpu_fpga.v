@@ -2,9 +2,9 @@
 
 `default_nettype none
 
-`include "VX_define.vh"
+`include "RV_define.vh"
 
-module VX_fpu_fpga#(
+module RV_fpu_fpga#(
 
     parameter TAGW = 2
 
@@ -237,7 +237,7 @@ module VX_fpu_fpga#(
     
     end
     
-    VX_fp_fma #(
+    RV_fp_fma #(
         .TAGW (TAGW),
         .LANES(`NUM_THREADS)
     ) fp_fma (
@@ -265,7 +265,7 @@ module VX_fpu_fpga#(
         .valid_out  (fma_valid_out)
     );
     
-    VX_fp_cvt #(
+    RV_fp_cvt #(
         .TAGW (TAGW),
         .LANES(`NUM_THREADS)
     ) fp_cvt (
@@ -292,7 +292,7 @@ module VX_fpu_fpga#(
         .valid_out  (cvt_valid_out)
     );
     
-        VX_fp_ncomp #(
+        RV_fp_ncomp #(
         .TAGW (TAGW),
         .LANES(`NUM_THREADS)
     ) fp_ncomp (
