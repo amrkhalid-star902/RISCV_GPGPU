@@ -2,7 +2,7 @@
 
 
 
-module VX_fp_class#(
+module RV_fp_class#(
 
     parameter MAN_BITS = 23,  //Number of mantissa bits
     parameter EXP_BITS = 8    //Number of exponent bits
