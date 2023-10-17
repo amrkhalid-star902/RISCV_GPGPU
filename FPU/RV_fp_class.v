@@ -2,6 +2,7 @@
 
 
 
+
 module RV_fp_class#(
 
     parameter MAN_BITS = 23,  //Number of mantissa bits
