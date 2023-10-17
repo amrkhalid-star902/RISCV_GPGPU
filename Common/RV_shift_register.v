@@ -1,8 +1,8 @@
 `timescale 1ns / 1ps
 
-`include "VX_platform.vh"
+`include "RV_platform.vh"
 
-module VX_shift_register#(
+module RV_shift_register#(
 
     parameter DATAW  = 8,
     parameter RESETW = 0,
@@ -27,7 +27,7 @@ module VX_shift_register#(
             if(RESETW == DATAW)
             begin
         
-                VX_shift_register_wr #(
+                RV_shift_register_wr #(
                 
                     .DATAW (DATAW),
                     .DEPTH (DEPTH)
@@ -43,7 +43,7 @@ module VX_shift_register#(
             end
             else begin
             
-                VX_shift_register_wr #(
+                RV_shift_register_wr #(
                 
                     .DATAW (DATAW),
                     .DEPTH (DEPTH)
@@ -56,7 +56,7 @@ module VX_shift_register#(
                     .data_out (data_out[DATAW-1:DATAW-RESETW])
                 );
                 
-                VX_shift_register_nr #(
+                RV_shift_register_nr #(
                 
                     .DATAW (DATAW),
                     .DEPTH (DEPTH)
@@ -76,7 +76,7 @@ module VX_shift_register#(
         
             `UNUSED_VAR (reset)
             // If RESETW is zero, generate a shift register that does not support reset.
-            VX_shift_register_nr #(
+            RV_shift_register_nr #(
             
                 .DATAW (DATAW),
                 .DEPTH (DEPTH)
