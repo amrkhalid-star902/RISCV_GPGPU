@@ -23,6 +23,9 @@ ifndef RV_CONFIG
 
 `ifndef NUM_BARRIERS
 `define NUM_BARRIERS 4
+
+
+`endif
 `endif
 
 `ifndef L2_ENABLE
