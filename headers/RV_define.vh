@@ -8,7 +8,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 
-
 `define NW_BITS         `LOG2UP(`NUM_WARPS)
 
 `define NT_BITS         `LOG2UP(`NUM_THREADS)
@@ -64,5 +63,9 @@
 `define INST_FPU_NMSUB       4'hB   
 `define INST_FPU_NMADD       4'hF
 `define INST_FPU_BITS        4
+
+`define INST_OP_BITS    4
+`define INST_MOD_BITS   3
+
 
 `endif
