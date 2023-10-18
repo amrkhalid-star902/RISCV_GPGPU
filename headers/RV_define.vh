@@ -64,3 +64,5 @@
 `define INST_FPU_NMSUB       4'hB   
 `define INST_FPU_NMADD       4'hF
 `define INST_FPU_BITS        4
+
+`endif
